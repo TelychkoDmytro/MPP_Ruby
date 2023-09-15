@@ -10,19 +10,18 @@ def priority(operand)
     end
 end
 operations = ["+", "-", "*", "/", "^"]
-# prefix_function = ["sin", "cos", "tg", "ctg"]
+prefix_function = ["sin", "cos", "tg", "ctg"]
 stack = []
 output = []
 
-expression = "( 2 + 5 ) * 5 - 4 - ( 5 ^ 2 + 15 / 5 )"
+expression = "( 2 + 5 ) * 5 - 4 * cos(30) - ( 5 ^ 2 + 15 / 5 ) + sin(60)"
 expression_list = expression.split
 expression_list.each do |symbol|
-	# if prefix_function.include?(symbol)
-	# 	stack.push(symbol)
-	# end
-	if operations.include?(symbol)
+	if prefix_function.include?(symbol)
+		stack.push(symbol)
+	elsif operations.include?(symbol)
 		#prefix_function.include?(stack[-1]) or
-		while((priority(symbol) <= priority(stack[-1])))
+		while(prefix_function.include?(stack[-1]) or (priority(symbol) <= priority(stack[-1])))
 			output.push(stack.pop)
 		end
 		stack.push(symbol)
@@ -38,8 +37,6 @@ expression_list.each do |symbol|
 	end
 end
 
-stack.reverse_each do |symbol|
-	output.push(symbol)
-end
+stack.reverse_each {|symbol| output.push(symbol)}
 
 output.each {|symbol| print symbol}
