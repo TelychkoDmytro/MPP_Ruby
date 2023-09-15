@@ -14,7 +14,8 @@ prefix_function = ["sin", "cos", "tg", "ctg"]
 stack = []
 output = []
 
-expression = "( 2 + 5 ) * 5 - 4 * cos(30) - ( 5 ^ 2 + 15 / 5 ) + sin(60)"
+expression = ARGV[0]
+# expression = "( 2 + 5 ) * 5 - 4 * cos(30) - ( 5 ^ 2 + 15 / 5 ) + sin(60)"
 expression_list = expression.split
 expression_list.each do |symbol|
 	if prefix_function.include?(symbol)
@@ -39,4 +40,4 @@ end
 
 stack.reverse_each {|symbol| output.push(symbol)}
 
-output.each {|symbol| print symbol}
+output.each {|symbol| print "#{symbol} "}
