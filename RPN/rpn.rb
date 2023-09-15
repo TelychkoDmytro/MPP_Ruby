@@ -9,31 +9,31 @@ def priority(operand)
     	return 0
     end
 end
-operands = ["+", "-", "*", "/", "^"]
+operations = ["+", "-", "*", "/", "^"]
 # prefix_function = ["sin", "cos", "tg", "ctg"]
 stack = []
 output = []
 
-expression = "(2+5)*5/4-(5+15/5)"
-
-expression.each_char do |symbol|
+expression = "( 2 + 5 ) * 5 - 4 - ( 5 ^ 2 + 15 / 5 )"
+expression_list = expression.split
+expression_list.each do |symbol|
 	# if prefix_function.include?(symbol)
 	# 	stack.push(symbol)
-	if symbol == ")"
+	# end
+	if operations.include?(symbol)
+		#prefix_function.include?(stack[-1]) or
+		while((priority(symbol) <= priority(stack[-1])))
+			output.push(stack.pop)
+		end
+		stack.push(symbol)
+	elsif symbol == ")"
 		while(stack[-1] != "(")
 			output.push(stack.pop)
 		end
 		stack.pop
-	elsif operands.include?(symbol)
-		#prefix_function.include?(stack[-1]) or 
-		# doesn't work, don't what what is лівоасоціативна
-		while((priority(symbol) < priority(stack[-1])))
-			output.push(stack.pop)
-		end
-		stack.push(symbol)
 	elsif symbol == "("
 		stack.push(symbol)
-	else
+	else # digits
 		output.push(symbol)
 	end
 end
@@ -42,6 +42,4 @@ stack.reverse_each do |symbol|
 	output.push(symbol)
 end
 
-
-
-puts output
+output.each {|symbol| print symbol}
