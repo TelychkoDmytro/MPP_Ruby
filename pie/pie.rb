@@ -153,6 +153,10 @@ end
 def print_result(matrix3d)
   length = 0
   ind = 0
+  if matrix.empy?
+    puts "There is no result"
+    return
+  end
   matrix3d.each do |matrix|
     if matrix.first.first.length > length
       length = matrix.first.first.length  
