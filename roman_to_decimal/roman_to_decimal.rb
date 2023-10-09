@@ -2,7 +2,6 @@
 # roman = "MDCLXVI"
 roman = ARGV[0] ? ARGV[0] : "MDCLXVI"
 
-
 unless valid = /^[M]{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/.match?(roman)
 	puts "The input is invalid"
 	return
