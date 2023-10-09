@@ -1,3 +1,4 @@
+# Remark: type sin(x) with brakets
 def priority(operand)
 	if operand == "^"
 		return 3
@@ -14,9 +15,10 @@ prefix_function = ["sin", "cos", "tg", "ctg"]
 stack = []
 output = []
 
-expression = ARGV[0]
 # expression = "( 2 + 5 ) * 5 - 4 * cos(30) - ( 5 ^ 2 + 15 / 5 ) + sin(60)"
+expression = ARGV[0]
 expression_list = expression.split
+puts expression_list.class
 expression_list.each do |symbol|
 	if prefix_function.include?(symbol)
 		stack.push(symbol)
