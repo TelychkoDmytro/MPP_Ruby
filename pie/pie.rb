@@ -153,6 +153,11 @@ end
 def print_result(matrix3d)
   length = 0
   ind = 0
+  if matrix3d.empty?
+    puts "There is no result"
+    return
+  end
+
   matrix3d.each do |matrix|
     if matrix.first.first.length > length
       length = matrix.first.first.length  
@@ -163,7 +168,7 @@ def print_result(matrix3d)
 end
 
 
-num_of_rows = 4
+num_of_rows = 6
 num_of_cols = 8
 # Create pie
 matrix = Array.new(num_of_rows) { Array.new(num_of_cols) {0} }
@@ -176,9 +181,9 @@ if random == true
   end
 else
   matrix[0][1] = 1
-  matrix[1][6] = 1
+  matrix[0][3] = 1
   matrix[2][4] = 1
-  matrix[3][2] = 1
+  matrix[4][6] = 1
 end
 
 # Print pie with risens
@@ -198,6 +203,10 @@ cols.pop()
 
 com1 = generate_combinations(rows)
 com2 = generate_combinations(cols)
+puts "Here"
+puts com1[-1]
+puts "result"
+puts com2[83]
 # puts "combinations1"
 # print_matrix(com1)
 # puts "combinations2"
