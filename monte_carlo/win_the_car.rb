@@ -1,3 +1,4 @@
+//
 class Array
 	def shuffle
 		self.sort_by {rand}
