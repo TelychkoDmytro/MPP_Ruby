@@ -14,12 +14,9 @@ class MonteCarloIntegration
   # perform the Monte Carlo classic integration
   def integrate_classic
     sum = 0.0
-    x = @a
-    step = (@b - @a) / @n
-
     @n.times do
+      x = rand(@a.to_f..@b.to_f)
       sum += function(x)
-      x += step
     end
 
     (sum * (@b - @a)) / @n
